@@ -7,6 +7,9 @@ from pages.base_page import BasePage
 
 
 class CheckLogo(BasePage):
+    @allure.step("Перейти на страницу заказа")
+    def open_order_page(self):
+        self.driver.get(urls.ORDER_URL)
 
     @allure.step('Кликнуть по логотипу и переключиться на новую вкладку')
     def transition_via_logo(self, logo_locator):
@@ -20,10 +23,10 @@ class CheckLogo(BasePage):
 
     @allure.step('Кликнуть по логотипу Яндекса и проверить переход')
     def check_yandex_logo_transition(self):
-        self.transition_via_logo(LogoLocators.logo_yandex)
+        self.transition_via_logo(LogoLocators.LOGO_YANDEX)
         return self.is_transition_successful(urls.DZEN_URL, GeneralLocators.BUTTON_DZEN_SEARCH)
 
     @allure.step('Кликнуть по логотипу Самоката и проверить переход')
     def check_scooter_logo_transition(self):
-        self.transition_via_logo(LogoLocators.logo_scooter)
+        self.transition_via_logo(LogoLocators.LOGO_SCOOTER)
         return self.is_transition_successful(urls.BASE_URL, GeneralLocators.IMG_MAIN_PAGE_SCOOTER)
